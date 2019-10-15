@@ -19,6 +19,8 @@ public:
 // 작업입니다.
 public:
 	CPoint pnt;
+	COLORREF col;
+	int size;
 // 재정의입니다.
 public:
 	virtual void OnDraw(CDC* pDC);  // 이 뷰를 그리기 위해 재정의되었습니다.
@@ -43,6 +45,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnSize1();
+	afx_msg void OnSize16();
+	afx_msg void OnSize32();
+	afx_msg void OnMenuColor();
 };
 
 #ifndef _DEBUG  // Md1View.cpp의 디버그 버전

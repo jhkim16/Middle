@@ -30,6 +30,10 @@ BEGIN_MESSAGE_MAP(CMd1View, CView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 	ON_WM_MOUSEMOVE()
+	ON_COMMAND(ID_SIZE_1, &CMd1View::OnSize1)
+	ON_COMMAND(ID_SIZE_16, &CMd1View::OnSize16)
+	ON_COMMAND(ID_SIZE_32, &CMd1View::OnSize32)
+	ON_COMMAND(ID_MENU_COLOR, &CMd1View::OnMenuColor)
 END_MESSAGE_MAP()
 
 // CMd1View 생성/소멸
@@ -119,11 +123,42 @@ void CMd1View::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (nFlags == MK_LBUTTON) {
-		CLine* p = new CLine(pnt, point, 16, RGB(0, 255, 0));
+		CLine* p = new CLine(pnt, point, size, col);
 		GetDocument()->m_oa.Add(p);
 		Invalidate(FALSE);
 	}
 	pnt = point;
 
 	CView::OnMouseMove(nFlags, point);
+}
+
+
+void CMd1View::OnSize1()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.'
+	size = 1;
+}
+
+
+void CMd1View::OnSize16()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	size = 16;
+}
+
+
+void CMd1View::OnSize32()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	size = 32;
+}
+
+
+void CMd1View::OnMenuColor()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	CColorDialog dlg;
+	if (dlg.DoModal() == IDOK) {
+		col = dlg.GetColor();
+	}
 }
